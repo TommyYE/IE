@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quit Smoke</title>
+    <link rel="stylesheet" href="/Users/TommyYE/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="/Users/TommyYE/jqwidgets/jqwidgets/styles/jqx.shinyblack.css" type="text/css" />
+    <script type="text/javascript" src="/Users/TommyYE/jqwidgets/scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/Users/TommyYE/jqwidgets/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="/Users/TommyYE/jqwidgets/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="/Users/TommyYE/jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="/Users/TommyYE/jqwidgets/jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="/Users/TommyYE/jqwidgets/jqwidgets/jqxcombobox.js"></script>
+</head>
+<body>
+    <div id='content'>
+        <p>Please select the number of cigarette you smoke today:</P>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var source = [
+                    "0","1","2","3","4","5","6","7","8","9"
+                ];
+                // Create a jqxComboBox
+                $("#jqxcombobox").jqxComboBox({ source: source, selectedIndex: 0, width: '200px', height: '25px' });
+                // disable the sixth item.
+                //$("#jqxcombobox").jqxComboBox('disableAt', 5);
+                // bind to 'select' event.
+                $('#jqxcombobox').bind('select', function (event) {
+                    var args = event.args;
+                    var item = $('#jqxcombobox').jqxComboBox('getItem', args.index);
+                    alert('Selected: ' + item.label);
+                });
+            });
+        </script>
+        <div id='jqxcombobox'>
+        </div>
+    </div>
+</body>
+</html>
