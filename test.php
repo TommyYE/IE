@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<?php
+$mysqli = new mysqli("localhost", "root", "root", "Test");
+
+/* check connection */
+if ($mysqli->connect_errno) {
+    printf("Connect failed: %s\n", $mysqli->connect_error);
+    exit();
+}
+?>
 <html lang="en">
 <head>
     <title>Quit Smoke</title>
@@ -32,8 +41,23 @@
             });
         </script>
         <p>Please select the brand you smoke today:</p>
-        <div id ="Barand">
-        </div>
+    <?php
+    $combo="<select>";
+    $sql = "SELECT Brand FROM Cigarette";
+    if($result=$mysqli->query($sql)){
+        //print_r($result);
+        if($result->num_rows){
+            while($row=$result->fetch_object()) {
+                $combo.="<option>".$row->Brand."</option>";
+            }
+            $result->free();
+        }
+    }
+    $combo.="</select>";
+    echo $combo;
+    ?>
+</select>
+        </select>
         <br>
         <p>Please select the number of cigarette you smoke today:</P>
         
@@ -41,28 +65,7 @@
         </div>
     </div>
     <div id='detail'>
-        <table>
-            <tr>
-                <td>Material</td>
-                <td>Contain</td>
-            </tr>
-            <tr>
-                <td>Puff</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Tar</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Nicotine</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Carbon Monoxide</td>
-                <td></td>
-            </tr>
-        </table>
+    </div>
         <script type="text/javascript">
             $(document).ready(function () {
                 // Create a jqxLinkButton widget.

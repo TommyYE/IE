@@ -1,23 +1,18 @@
 <?php
+$link = mysqli_connect("localhost", "root", "root", "Test");
 
-        include('connectMySQL.php');
-        $result = mysqli_query($con,"SELECT Brand FROM Cigarette")
-        	 or die('Error connecting to mysql: ' . mysqli_error($con));
-                //or die(mysql_error()); 
+/* check connection */
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
 
-$result = mysqli_query($con,$query);
- //or die(mysql_error()); 
+if ($result = mysqli_query($link, "SELECT Brand FROM Cigarette")) {
+	    print_r($result);
 
-$row = mysqli_fetch_array($result);
+    /* free result set */
+    mysqli_free_result($result);
+}
 
- if($row)
- {
- $Brand = $row['Brand'];
- //renderForm($Brand);
- }
- else
- {
- echo "No results!";
- }
  
 ?>
