@@ -1,24 +1,8 @@
 <?php
 
         include('connectMySQL.php');
-        
 
-
-        
-        $result = mysqli_query($con,"SELECT Weight, Tar, Nicotine, CO FROM Cigarette")
-        	 or die('Error connecting to mysql: ' . mysqli_error($con));
-                //or die(mysql_error()); 
-
-
-
-
-$tag1 = $_REQUEST["myList"];
-
-
-$tag2 = $_REQUEST["tag2"];
-
-
-$tag3 = $_REQUEST["tag3"];
+$tag1 = $_REQUEST["tag1"];
 
 //$query = "select * from Cigarette WHERE brand='".$tag1."';
 
@@ -27,10 +11,7 @@ $query = "SELECT * FROM Cigarette WHERE";
 if($tag1!=""){$query=$query." brand='".$tag1."'";}
 
 
-//$id = $_REQUEST['id'];
-
-
-
+//$brand = $_REQUEST['brand'];
 
 $result = mysqli_query($con,$query);
  //or die(mysql_error()); 
