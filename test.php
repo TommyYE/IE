@@ -26,6 +26,7 @@ if ($mysqli->connect_errno) {
         <img src="/IE/photos/QuitMate.png" alt = "logo" style="width:302px;hight:403px;">
     </div>
     <div id='content'>
+        <form method="POST" action ="search-result.php">
         <script type="text/javascript">
             $(document).ready(function () {
                 var cbrand = [];
@@ -56,18 +57,19 @@ if ($mysqli->connect_errno) {
     $combo.="</select>";
     echo $combo;
     ?>
-</select>
-        </select>
+
         <br>
         <p>Please select the number of cigarette you smoke today:</P>
         
         <div id='Number'>
         </div>
+
+        <input type = "submit" value="submit">
+        </form>
     </div>
-    <div id='detail'>
-        <?php
-        ?>
+
     </div>
+
         <script type="text/javascript">
             $(document).ready(function () {
                 // Create a jqxLinkButton widget.
@@ -83,6 +85,7 @@ if ($mysqli->connect_errno) {
         <div style='width:200px;' id='HowtoQuit'>
         <a id = "Quit" style='margin-left: 25px;' target ="_blank" href="http://www.qld.gov.au/health/staying-healthy/atods/smoking/quitline/index.html">How to quit</a>
         </div>
+        
     </div>
 </body>
 </html>
