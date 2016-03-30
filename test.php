@@ -48,7 +48,7 @@ if ($mysqli->connect_errno) {
         //print_r($result);
         if($result->num_rows){
             while($row=$result->fetch_object()) {
-                $combo.="<option>".$row->Brand."</option>";
+                $combo.="<option value='".$row->Brand."'>".$row->Brand."</option>";
             }
             $result->free();
         }
@@ -65,6 +65,8 @@ if ($mysqli->connect_errno) {
         </div>
     </div>
     <div id='detail'>
+        <?php
+        ?>
     </div>
         <script type="text/javascript">
             $(document).ready(function () {
