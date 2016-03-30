@@ -69,10 +69,9 @@ if ($mysqli->connect_errno) {
         <?php
         $tag1 = $_REQUEST["tag1"];
         $search = "SELECT Weight, Tar, Nicotine, CO FROM Cigarette WHERE";
-        $search=$search."Brand = '".$tag1."'";
+        $search=$search."Brand like '".$tag1."'";
         $details=$mysqli->query($search);
         if($details->num_rows) {
-            $Weight = $row['Weight'];
             $Tar = $row['Tar'];
             $Nicotine = $row['Nicotine'];
             $CO = $row['CO'];
@@ -83,16 +82,6 @@ if ($mysqli->connect_errno) {
         <table border="2" align="center" bgcolor="">
 
 
-
-
-<tr>
-    <td>Weight (mg)</td>
-    <td>
-    <?php 
-        echo $Weight;
-    ?>
-    </td>
-</tr>
 <tr>
 <td>Tar (mg/cig)</td>
     <td>

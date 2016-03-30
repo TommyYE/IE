@@ -38,17 +38,6 @@ $row = mysqli_fetch_array($result);
 
 <table border="2" align="center" bgcolor="" width="600" height="100">
 
-
-
-
-<tr>
-	<td>Weight (mg)</td>
-	<td>
-	<?php 
-		echo $Weight;
-	?>
-	</td>
-</tr>
 <tr>
 <td>Tar (mg/cig)</td>
 	<td>
