@@ -65,6 +65,61 @@ if ($mysqli->connect_errno) {
         </div>
 
         <input type = "submit" value="submit">
+
+        <?php
+        $tag1 = $_REQUEST["tag1"];
+        $search = "SELECT Weight, Tar, Nicotine, CO FROM Cigarette WHERE";
+        $search=$search."Brand = '".$tag1."'";
+        $details=$mysqli->query($search);
+        if($details->num_rows) {
+            $Weight = $row['Weight'];
+            $Tar = $row['Tar'];
+            $Nicotine = $row['Nicotine'];
+            $CO = $row['CO'];
+        } else {
+            echo "Details No Found";
+        }
+        ?>
+        <table border="2" align="center" bgcolor="">
+
+
+
+
+<tr>
+    <td>Weight (mg)</td>
+    <td>
+    <?php 
+        echo $Weight;
+    ?>
+    </td>
+</tr>
+<tr>
+<td>Tar (mg/cig)</td>
+    <td>
+    <?php 
+        echo $Tar;
+    ?>
+    </td>
+</tr>
+<tr>
+<td>Nicotine (mg/cig)</td>          
+    <td>
+    <?php 
+        echo $Nicotine;
+    ?>
+    </td>
+</tr>
+<tr>
+<td>Carbon Monoxide (mg/cig)</td>
+    <td>
+    <?php 
+        echo $CO;
+    ?>
+    </td>
+
+</tr>
+
+</table>
         </form>
     </div>
 
