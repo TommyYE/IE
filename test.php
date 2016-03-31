@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <?php
-$mysqli = new mysqli("localhost", "root", "root", "Test");
-
-/* check connection */
-if ($mysqli->connect_errno) {
-    printf("Connect failed: %s\n", $mysqli->connect_error);
-    exit();
-}
+include('connectMySQL.php');
+$brandListQuery = mysqli_query($con, "SELECT Brand FROM Cigarette");
 ?>
-<html lang="en">
+<html>
 <head>
-    <title>Quit Smoke</title>
+<title>Quit Smoke</title>
     <link rel="stylesheet" href="/IE/jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="/IE/jqwidgets/jqwidgets/styles/jqx.shinyblack.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/IE/css/style.css">
@@ -25,94 +20,41 @@ if ($mysqli->connect_errno) {
     <div id='logo'>
         <img src="/IE/photos/QuitMate.png" alt = "logo" style="width:302px;hight:403px;">
     </div>
+
     <div id='content'>
-        <form method="POST" action ="search-result.php">
-        <script type="text/javascript">
-            $(document).ready(function () {
-                var cbrand = [];
-                var source = [];
-                for (var i = 0; i != 251; ++i) source.push(i)            
-                // Create a jqxComboBox
-                $("#Number").jqxComboBox({ source: source, selectedIndex: 0, width: '200px', height: '25px' });
-                $('#Number').bind('select', function (event) {
-                    var args = event.args;
-                    var itemNumber = $('#Number').jqxComboBox('getItem', args.index);
-                    alert('Selected: ' + itemNumber.label);
-                });
-            });
-        </script>
+        <form method = "POST" action = "search-result.php">
+        
         <p>Please select the brand you smoke today:</p>
-    <?php
-    $combo="<select>";
-    $sql = "SELECT Brand FROM Cigarette";
-    if($result=$mysqli->query($sql)){
-        //print_r($result);
-        if($result->num_rows){
-            while($row=$result->fetch_object()) {
-                $combo.="<option value='".$row->Brand."'>".$row->Brand."</option>";
+        <?php
+        $combo='<select name ="brandList">';
+        $sql = "SELECT Brand FROM Cigarette";
+            if($result=$con->query($sql)){
+            //print_r($result);
+                if($result->num_rows){
+                    while($row=$result->fetch_object()) {
+                        $combo.="<option value='".$row->Brand."'>".$row->Brand."</option>";
+                    }
+                    $result->free();
+                }
             }
-            $result->free();
-        }
-    }
-    $combo.="</select>";
-    echo $combo;
-    ?>
+            $combo.='</select>';
+            echo $combo;
+        ?>
 
         <br>
         <p>Please select the number of cigarette you smoke today:</P>
-        
-        <div id='Number'>
-        </div>
+        <?php $smokeno = isset($_GET['number'])?$_GET['number']:''; ?>
+        <select name='number' id='number' >
 
-        <input type = "submit" value="submit">
+        <?php for($i=0;$i<=250;$i++):?>
+            <option value="<?php echo $i;?>" <?php echo $i==$smokeno? 'selected':'';?> ><?php echo $i;?></option>
+        <?php endfor;?>
 
-        <?php
-        $tag1 = $_REQUEST["tag1"];
-        $search = "SELECT Weight, Tar, Nicotine, CO FROM Cigarette WHERE";
-        $search=$search."Brand like '".$tag1."'";
-        $details=$mysqli->query($search);
-        if($details->num_rows) {
-            $Tar = $row['Tar'];
-            $Nicotine = $row['Nicotine'];
-            $CO = $row['CO'];
-        } else {
-            echo "Details No Found";
-        }
-        ?>
-        <table border="2" align="center" bgcolor="">
-
-
-<tr>
-<td>Tar (mg/cig)</td>
-    <td>
-    <?php 
-        echo $Tar;
-    ?>
-    </td>
-</tr>
-<tr>
-<td>Nicotine (mg/cig)</td>          
-    <td>
-    <?php 
-        echo $Nicotine;
-    ?>
-    </td>
-</tr>
-<tr>
-<td>Carbon Monoxide (mg/cig)</td>
-    <td>
-    <?php 
-        echo $CO;
-    ?>
-    </td>
-
-</tr>
-
-</table>
-        </form>
-    </div>
-
-    </div>
+        </select>
+        <br><br>
+        <input type="submit" value="submit">
+        <br><br>
+            </div>
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -127,9 +69,10 @@ if ($mysqli->connect_errno) {
             </div>
         </div>
         <div style='width:200px;' id='HowtoQuit'>
-        <a id = "Quit" style='margin-left: 25px;' target ="_blank" href="http://www.qld.gov.au/health/staying-healthy/atods/smoking/quitline/index.html">How to quit</a>
+            <a id = "Quit" style='margin-left: 25px;' target ="_blank" href="http://www.qld.gov.au/health/staying-healthy/atods/smoking/quitline/index.html">How to quit</a>
         </div>
-        
+        </form>
     </div>
+
 </body>
 </html>

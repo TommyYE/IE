@@ -2,13 +2,12 @@
 
         include('connectMySQL.php');
 
-$tag1 = $_REQUEST["tag1"];
+$tag1 = $_REQUEST["brandList"];
 
 //$query = "select * from Cigarette WHERE brand='".$tag1."';
 
 
-$query = "SELECT * FROM Cigarette WHERE";
-if($tag1!=""){$query=$query." brand='".$tag1."'";}
+$query = "SELECT * FROM Cigarette WHERE brand ='".$tag1."'";
 
 
 //$brand = $_REQUEST['brand'];
