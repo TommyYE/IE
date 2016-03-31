@@ -3,6 +3,7 @@
         include('connectMySQL.php');
 
 $tag1 = $_REQUEST["brandList"];
+$tag2 = $_REQUEST["number"];
 
 //$query = "select * from Cigarette WHERE brand='".$tag1."';
 
@@ -41,6 +42,7 @@ $row = mysqli_fetch_array($result);
 <td>Tar (mg/cig)</td>
 	<td>
 	<?php 
+		$Tar = floatval($Tar) * floatval($tag2);
 		echo $Tar;
 	?>
 	</td>
@@ -49,6 +51,7 @@ $row = mysqli_fetch_array($result);
 <td>Nicotine (mg/cig)</td>			
 	<td>
 	<?php 
+		$Nicotine = floatval($Nicotine) * floatval($tag2);
 		echo $Nicotine;
 	?>
 	</td>
@@ -57,6 +60,7 @@ $row = mysqli_fetch_array($result);
 <td>Carbon Monoxide (mg/cig)</td>
 	<td>
 	<?php 
+		$CO = floatval($CO) * floatval($tag2);
 		echo $CO;
 	?>
 	</td>
