@@ -22,7 +22,7 @@ $brandListQuery = mysqli_query($con, "SELECT Brand FROM Cigarette");
     </div>
 
     <div id='content'>
-        <form method = "POST" action = "search-result.php">
+        <form id="Form1" method = "POST" action = "test.php">
         
         <p>Please select the brand you smoke today:</p>
         <?php
@@ -54,7 +54,91 @@ $brandListQuery = mysqli_query($con, "SELECT Brand FROM Cigarette");
         <br><br>
         <input type="submit" value="submit">
         <br><br>
-            </div>
+
+        <form id="Form2">
+            <?php
+
+        $tag1 = $_REQUEST["brandList"];
+        $tag2 = $_REQUEST["number"];
+
+//$query = "select * from Cigarette WHERE brand='".$tag1."';
+
+
+        $query = "SELECT * FROM Cigarette WHERE brand ='".$tag1."'";
+
+
+//$brand = $_REQUEST['brand'];
+
+$result = mysqli_query($con,$query);
+ //or die(mysql_error()); 
+
+$row = mysqli_fetch_array($result);
+
+ if($row)
+ {
+ 
+ $Weight = $row['Weight'];
+ $Tar = $row['Tar'];
+ $Nicotine = $row['Nicotine'];
+ $CO = $row['CO'];
+ 
+ //renderForm($Weight, $Tar, $Nicotine, $CO);
+ }
+ else
+ {
+ echo "No results!";
+ }
+ 
+?>
+
+<p>The bad material you got:</p>
+<table border="2">
+
+<tr>
+<td>Tar (mg/cig)</td>
+    <td>
+    <?php 
+        $Tar = floatval($Tar) * floatval($tag2);
+        echo $Tar;
+    ?>
+    </td>
+</tr>
+<tr>
+<td>Nicotine (mg/cig)</td>          
+    <td>
+    <?php 
+        $Nicotine = floatval($Nicotine) * floatval($tag2);
+        echo $Nicotine;
+    ?>
+    </td>
+</tr>
+<tr>
+<td>Carbon Monoxide (mg/cig)</td>
+    <td>
+    <?php 
+        $CO = floatval($CO) * floatval($tag2);
+        echo $CO;
+    ?>
+    </td>
+
+</tr>
+
+</table>
+<p id="money" value= "money">The money you spent in smoking today:</p>
+<?php
+$money=20 * floatval($tag2) * 0.05;
+if ($money != 0){
+    echo "AUD ".$money;
+} else{
+    echo "You did not smoking today, well done :)";
+}
+
+?>
+<br><br>
+
+        </form>
+        </div>
+
 
         <script type="text/javascript">
             $(document).ready(function () {
