@@ -22,7 +22,7 @@ $brandListQuery = mysqli_query($con, "SELECT Brand FROM Cigarette");
     </div>
 
     <div id='content'>
-        <form id="Form1" method = "POST" action = "test.php">
+        <form id="Form1" method = "post" action = "test.php">
         
         <p>Please select the brand you smoke today:</p>
         <?php
@@ -42,24 +42,74 @@ $brandListQuery = mysqli_query($con, "SELECT Brand FROM Cigarette");
         ?>
 
         <br>
-        <p>Please select the number of cigarette you smoke today:</P>
-        <?php $smokeno = isset($_GET['number'])?$_GET['number']:''; ?>
-        <select name='number' id='number' >
+        <p>Please enter the number of cigarette you smoke today:</P>
+        <div>
+            <table>
+            <tr>
+                <th>
+                    <input type='button' value='-' class='qtyminus' field='quantity' />
+                </th>
+                <th>
+                    <input type='text' name='quantity' value='0' class='qty' />
+                </th>
+                <th>
+                    <input type='button' value='+' class='qtyplus' field='quantity' />
+                </th>
+            </tr>
+        </table>
+        <script type="text/javascript">
+        jQuery(document).ready(function(){
+    // This button will increment the value
+    $('.qtyplus').click(function(e){
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        fieldName = $(this).attr('field');
+        // Get its current value
+        var currentVal = parseInt($('input[name='+fieldName+']').val());
+        // If is not undefined
+        if (!isNaN(currentVal)) {
+            // Increment
+            $('input[name='+fieldName+']').val(currentVal + 1);
+        } else {
+            // Otherwise put a 0 there
+            $('input[name='+fieldName+']').val(0);
+        }
+    });
+    // This button will decrement the value till 0
+    $(".qtyminus").click(function(e) {
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        fieldName = $(this).attr('field');
+        // Get its current value
+        var currentVal = parseInt($('input[name='+fieldName+']').val());
+        // If it isn't undefined or its greater than 0
+        if (!isNaN(currentVal) && currentVal > 0) {
+            // Decrement one
+            $('input[name='+fieldName+']').val(currentVal - 1);
+        } else {
+            // Otherwise put a 0 there
+            $('input[name='+fieldName+']').val(0);
+        }
+    });
+});
 
-        <?php for($i=0;$i<=250;$i++):?>
-            <option value="<?php echo $i;?>" <?php echo $i==$smokeno? 'selected':'';?> ><?php echo $i;?></option>
-        <?php endfor;?>
-
-        </select>
+       
+       </script>
+   </div>
         <br><br>
-        <input type="submit" value="submit">
+        <div id = "">
+        <input type="submit" value="submit" name ="submit">
+</div>
         <br><br>
+    </form>
 
         <form id="Form2">
             <?php
 
         $tag1 = $_REQUEST["brandList"];
-        $tag2 = $_REQUEST["number"];
+        $tag2 = $_REQUEST["quantity"];
 
 //$query = "select * from Cigarette WHERE brand='".$tag1."';
 
@@ -77,7 +127,6 @@ $row = mysqli_fetch_array($result);
  if($row)
  {
  
- $Weight = $row['Weight'];
  $Tar = $row['Tar'];
  $Nicotine = $row['Nicotine'];
  $CO = $row['CO'];
@@ -132,7 +181,7 @@ if ($money != 0){
 } else{
     echo "You did not smoking today, well done :)";
 }
-
+mysqli_close($con);
 ?>
 <br><br>
 
