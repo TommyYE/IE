@@ -149,6 +149,8 @@ if ($tag2 == 0) {
 	echo "The bad material figures in ".$tag2." cigarettes:";
 }
 ?>
+
+
 <table border="2">
 <tr>
 <td>Tar (mg/cig)</td>
@@ -180,6 +182,7 @@ if ($tag2 == 0) {
 </tr>
 
 </table>
+
 <p id="money" value= "money">The money you spent in smoking today:</p>
 <?php
 $money=20 * floatval($tag2) * 0.05;
