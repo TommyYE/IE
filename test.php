@@ -140,9 +140,16 @@ $row = mysqli_fetch_array($result);
  
 ?>
 
-<p>The bad material you got:</p>
+<?php
+if ($tag2 == 0) {
+	echo "Good job, you did not get any bad material from smoking.";
+} else if ($tag2 ==1) {
+	echo "The bad material figures in ".$tag2." cigarette:";
+} else {
+	echo "The bad material figures in ".$tag2." cigarettes:";
+}
+?>
 <table border="2">
-
 <tr>
 <td>Tar (mg/cig)</td>
     <td>
