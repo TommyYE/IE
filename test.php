@@ -22,7 +22,7 @@ $brandListQuery = mysqli_query($con, "SELECT Brand FROM Cigarette");
     </div>
 
     <div id='content'>
-        <form id="Form1" method = "post" action = "test.php">
+        <form id="Form1" method = "POST" action = "test.php">
         
         <p>Please select the brand you smoke today:</p>
         <?php
@@ -113,9 +113,7 @@ $brandListQuery = mysqli_query($con, "SELECT Brand FROM Cigarette");
 
 //$query = "select * from Cigarette WHERE brand='".$tag1."';
 
-
         $query = "SELECT * FROM Cigarette WHERE brand ='".$tag1."'";
-
 
 //$brand = $_REQUEST['brand'];
 
@@ -133,58 +131,42 @@ $row = mysqli_fetch_array($result);
  
  //renderForm($Weight, $Tar, $Nicotine, $CO);
  }
- else
- {
- echo "No results!";
- }
- 
-?>
 
-<?php
 if ($tag2 == 0) {
-	echo "Good job, you did not get any bad material from smoking.";
+	echo "Good job, you did not get any bad material from smoking today.";
 } else if ($tag2 ==1) {
 	echo "The bad material figures in ".$tag2." cigarette:";
 } else {
 	echo "The bad material figures in ".$tag2." cigarettes:";
 }
-?>
 
+$tRow = 3;
+$tCol = 2;
+echo "<table border='2'>";
+for ($i=0; $i < $tRow; $i++) { 
+  echo "<tr>";
+  for ($j=0; $j < $tCol; $j++) { 
+      echo "<td>";
+      if (($i == 0) and ($j == 0)) {
+          echo "Tar (mg/cig)";
+      } elseif (($i == 0) and ($j == 1)) {
+          echo floatval($Tar) * floatval($tag2);
+      } elseif (($i == 1) and ($j == 0)) {
+          echo "Nicotine (mg/cig)";
+      } elseif (($i == 1) and ($j == 1)) {
+          echo floatval($Nicotine) * floatval($tag2);;
+      } elseif (($i == 2) and ($j == 0)) {
+          echo "Carbon Monoxide (mg/cig)";
+      } else {
+          echo floatval($CO) * floatval($tag2);
+      }
+      echo "</td>";
+  }
+  echo "</tr>";
+}
+echo nl2br("</table>\r\n");
 
-<table border="2">
-<tr>
-<td>Tar (mg/cig)</td>
-    <td>
-    <?php 
-        $Tar = floatval($Tar) * floatval($tag2);
-        echo $Tar;
-    ?>
-    </td>
-</tr>
-<tr>
-<td>Nicotine (mg/cig)</td>          
-    <td>
-    <?php 
-        $Nicotine = floatval($Nicotine) * floatval($tag2);
-        echo $Nicotine;
-    ?>
-    </td>
-</tr>
-<tr>
-<td>Carbon Monoxide (mg/cig)</td>
-    <td>
-    <?php 
-        $CO = floatval($CO) * floatval($tag2);
-        echo $CO;
-    ?>
-    </td>
-
-</tr>
-
-</table>
-
-<p id="money" value= "money">The money you spent in smoking today:</p>
-<?php
+echo nl2br("The money you spent in smoking today: \r\n\n");
 $money=20 * floatval($tag2) * 0.05;
 if ($money != 0){
     echo "AUD ".$money;
