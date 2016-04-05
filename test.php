@@ -181,25 +181,14 @@ if ($money != 0){
 mysqli_close($con);
 ?>
 <br><br>
-
         </form>
-        </div>
-
-
-        <script type="text/javascript">
-            $(document).ready(function () {
-                // Create a jqxLinkButton widget.
-                $("#Negatives").jqxLinkButton({ width: '200', height: '30'});
-                $("#Quit").jqxLinkButton({width: '200', height: '30'});
-            });
-        </script>
         <div style='width:200px;' id='SmokeDanger'>
             <div>
-                <a style='margin-left: 25px;' target="_blank" href="http://www.quitnow.gov.au/internet/quitnow/publishing.nsf/Content/damaging-your-body" id='Negatives'>Negatives</a>
+                <a href="http://www.quitnow.gov.au/internet/quitnow/publishing.nsf/Content/damaging-your-body" class= "external">Negatives</a>
             </div>
         </div>
         <div style='width:200px;' id='HowtoQuit'>
-            <a id = "Quit" style='margin-left: 25px;' target ="_blank" href="https://www.monash.edu/ohs/health-and-wellbeing/smoke-free-monash">How to quit</a>
+            <a href="https://www.monash.edu/ohs/health-and-wellbeing/smoke-free-monash" class="external">How to quit</a>
         </div>
 
         </form>
