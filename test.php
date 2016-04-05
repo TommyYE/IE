@@ -132,14 +132,20 @@ $row = mysqli_fetch_array($result);
  //renderForm($Weight, $Tar, $Nicotine, $CO);
  }
 
+if ($tag2 < 0) {
+	$tag2 = 0;
+}
+ 
 if ($tag2 == 0) {
-	echo "Good job, you did not get any bad material from smoking today.";
+	echo nl2br("Good job, you did not get any bad material from smoking today. 
+	Plus, you did not spend any money :)\r\n");
 } else if ($tag2 ==1) {
 	echo "The bad material figures in ".$tag2." cigarette:";
 } else {
 	echo "The bad material figures in ".$tag2." cigarettes:";
 }
 
+if ($tag2 > 0) {
 $tRow = 3;
 $tCol = 2;
 echo "<table border='2'>";
@@ -170,8 +176,7 @@ echo nl2br("The money you spent in smoking today: \r\n\n");
 $money=20 * floatval($tag2) * 0.05;
 if ($money != 0){
     echo "AUD ".$money;
-} else{
-    echo "You did not smoking today, well done :)";
+} 
 }
 mysqli_close($con);
 ?>
@@ -194,8 +199,9 @@ mysqli_close($con);
             </div>
         </div>
         <div style='width:200px;' id='HowtoQuit'>
-            <a id = "Quit" style='margin-left: 25px;' target ="_blank" href="http://www.qld.gov.au/health/staying-healthy/atods/smoking/quitline/index.html">How to quit</a>
+            <a id = "Quit" style='margin-left: 25px;' target ="_blank" href="https://www.monash.edu/ohs/health-and-wellbeing/smoke-free-monash">How to quit</a>
         </div>
+
         </form>
     </div>
 
