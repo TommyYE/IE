@@ -132,11 +132,7 @@ $row = mysqli_fetch_array($result);
  //renderForm($Weight, $Tar, $Nicotine, $CO);
  }
 
-if ($tag2 < 0) {
-	$tag2 = 0;
-}
- 
-if ($tag2 == 0) {
+if ($tag2 <= 0) {
 	echo nl2br("Good job, you did not get any bad material from smoking today. 
 	Plus, you did not spend any money :)\r\n");
 } else if ($tag2 ==1) {
