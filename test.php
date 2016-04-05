@@ -137,11 +137,13 @@ if ($tag2 <= 0) {
 	Plus, you did not spend any money :)\r\n");
 } else if ($tag2 ==1) {
 	echo "The bad material figures in ".$tag2." cigarette:";
+    show_detail($tag2,$Tar, $Nicotine, $CO);
 } else {
 	echo "The bad material figures in ".$tag2." cigarettes:";
+    show_detail($tag2,$Tar, $Nicotine, $CO);
 }
 
-if ($tag2 > 0) {
+function show_detail($num, $Tar, $Nicotine, $CO) {
 $tRow = 3;
 $tCol = 2;
 echo "<table border='2'>";
@@ -152,15 +154,15 @@ for ($i=0; $i < $tRow; $i++) {
       if (($i == 0) and ($j == 0)) {
           echo "Tar (mg/cig)";
       } elseif (($i == 0) and ($j == 1)) {
-          echo floatval($Tar) * floatval($tag2);
+          echo floatval($Tar) * floatval($num);
       } elseif (($i == 1) and ($j == 0)) {
           echo "Nicotine (mg/cig)";
       } elseif (($i == 1) and ($j == 1)) {
-          echo floatval($Nicotine) * floatval($tag2);;
+          echo floatval($Nicotine) * floatval($num);;
       } elseif (($i == 2) and ($j == 0)) {
           echo "Carbon Monoxide (mg/cig)";
       } else {
-          echo floatval($CO) * floatval($tag2);
+          echo floatval($CO) * floatval($num);
       }
       echo "</td>";
   }
@@ -169,7 +171,7 @@ for ($i=0; $i < $tRow; $i++) {
 echo nl2br("</table>\r\n");
 
 echo nl2br("The money you spent in smoking today: \r\n\n");
-$money=20 * floatval($tag2) * 0.05;
+$money=20 * floatval($num) * 0.05;
 if ($money != 0){
     echo "AUD ".$money;
 } 
