@@ -2,7 +2,7 @@
 $server = 'localhost';
  $user = 'root';
  $pass = 'root';
- $db = 'Test';
+ $db = 'IE';
  
  // Connect to Database
  $con = mysqli_connect($server, $user, $pass, $db);

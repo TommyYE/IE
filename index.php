@@ -363,8 +363,7 @@ include('connectMySQL.php');
                                   <div id="hero-bar" class="graph"></div>
                               </div>
                               <div class="col-lg-12 colmd-12 col-sm-12" style="padding-top: 20px">
-									<span class="badge bg-info">$ AUD </span>
-									<input id="showMoney" value="0" style="width: 30%; height: 40px; text-align:center; border:none""></input>
+									<span class="badge bg-info" id = "showMoney">$ AUD </span>
 							  </div>
                           </div>
                     </div><!-- /showback -->
@@ -394,6 +393,7 @@ include('connectMySQL.php');
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+	<script src="assets/js/customSelect.js" type="text/javascript"></script>
 
 
     <!--common script for all pages-->
@@ -445,11 +445,10 @@ include('connectMySQL.php');
 		if (!checkRate(qty)){
 			qty = 0;
 			document.getElementById('qty').value=0;
+			
 		}
-// 		var money = document.getElementById('priceInput').value;
-		document.getElementById('showMoney').value=qty;
-// 		alert("Brand =" + brand + " and the size is " + size);
-		$.ajax ({
+		document.getElementById('showMoney').innerHTML="$ AUD " + qty;
+		.ajax ({
   			url: "a.php",
 			type: "POST",
             data: {name:brand },
