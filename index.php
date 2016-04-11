@@ -196,6 +196,7 @@ include('connectMySQL.php');
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
                     <li><a id="add-sticky" class="logout" href="javascript:;">Login</a></li>
+					<input type = "text" id = "username" name = "username" size = "30"/>
             	</ul>
             </div>
         </header>
@@ -442,6 +443,7 @@ include('connectMySQL.php');
 		var qty = document.getElementById('qty').value;
 		var brand = document.getElementById('brand').value;
 		var size = document.getElementById('size').value;
+		var username = document.getElementById().value;
 		if (!checkRate(qty)){
 			qty = 0;
 			document.getElementById('qty').value=0;
