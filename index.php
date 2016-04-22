@@ -32,7 +32,9 @@ include('connectMySQL.php');
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+	<style type="text/css">                            
+		a {color: inherit;}
+	</style>
   </head>
 
   <body>
@@ -43,18 +45,17 @@ include('connectMySQL.php');
       *********************************************************************************************************************************************************** -->
       <!--header start-->
       <header class="header black-bg">
-              <div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-              </div>
+<!--              <div class="sidebar-toggle-box">-->
+<!--                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>-->
+<!--              </div>-->
             <!--logo start-->
-            <a href="index.html" class="logo"><b>QUITMATE</b></a>
+            <a href="index.php" class="logo"><b>QUITMATE</b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
                 <ul class="nav top-menu">
                     <!-- settings start -->
-                    <!-- 
-<li class="dropdown">
+                    <li class="dropdown" style="visibility:hidden"> <!-- HIDE Command: style="visibility:hidden" -->
                         <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                             <i class="fa fa-tasks"></i>
                             <span class="badge bg-theme">4</span>
@@ -121,11 +122,8 @@ include('connectMySQL.php');
                             </li>
                         </ul>
                     </li>
- -->
-                    <!-- settings end -->
-                    <!-- inbox dropdown start-->
-                    <!-- 
-<li id="header_inbox_bar" class="dropdown">
+                    <!-- settings end                    inbox dropdown start -->                    
+                    <li id="header_inbox_bar" class="dropdown" style="visibility:hidden">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                             <i class="fa fa-envelope-o"></i>
                             <span class="badge bg-theme">5</span>
@@ -188,200 +186,46 @@ include('connectMySQL.php');
                             </li>
                         </ul>
                     </li>
- -->
+
                     <!-- inbox dropdown end -->
                 </ul>
                 <!--  notification end -->
             </div>
-            <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
-                    <li><a id="add-sticky" class="logout" href="javascript:;">Login</a></li>
-					<input type = "text" id = "username" name = "username" size = "30"/>
-            	</ul>
-            </div>
         </header>
       <!--header end-->
-      
-      <!-- **********************************************************************************************************************************************************
-      MAIN SIDEBAR MENU
-      *********************************************************************************************************************************************************** -->
-      <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
-              
-              	  <p class="centered"><a href="#"></a></p> <!-- <img src="assets/img/ui-sam.jpg" class="img-circle" width="60"> -->
-              	  <h5 class="centered">Quit Mate</h5>
-              	  	
-                  <li class="mt">
-                      <a href="#">
-                          <i class="fa fa-clock-o"></i>
-                          <span>Counter</span>
-                      </a>
-                  </li>
 
-                  <li class="mt">
-                      <a href="javascript:;" >
-                          <i class="fa fa-sitemap"></i>
-                          <span>Goals</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="#">Rank</a></li>
-                          <li><a  href="#">Achievement</a></li>
-                      </ul>
-                  </li>
-
-                  <li class="mt">
-                      <a href="javascript:;" >
-                          <i class="fa fa-file-text"></i>
-                          <span>Facts</span>
-                      </a>
-                  </li>
-                  <li class="mt">
-                      <a href="javascript:;" >
-                          <i class="fa fa-glass"></i>
-                          <span>Craving</span>
-                      </a>
-                      <ul class="sub">
-                      	  <li><a href="http://www.quitnow.gov.au/internet/quitnow/publishing.nsf/Content/damaging-your-body" target="_blank">Negatives</a></li>
-                      	  <li><a href="https://www.monash.edu/ohs/health-and-wellbeing/smoke-free-monash" target="_blank">Monash Quit Program</a></li>
-                      </ul>
-                  </li>
-                  <li class="mt">
-                      <a href="javascript:;" >
-                          <i class="fa fa-users"></i>
-                          <span>About Us</span>
-                      </a>
-                  </li>
-                  
-
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
-      <!--sidebar end-->
       
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
-      <section id="main-content">
+      <!-- <section id="main-content"> --> <!-- IN STYLE.CSS -->
           <section class="wrapper">
       		<div class="row mt">
-      		<!-- INPUT BOARD START -->
-      			<div class="col-lg-6 col-md-6 col-sm-12">
-      				<div class="showback">
-      					<h4><i class="fa fa-angle-right"></i> Did you smoke today?</h4>
-						<p>
-						<!-- CIGARETTE BRAND -->
-						<div class="col-lg-8 col-md-8 col-sm-8">
-					    	<button id="brand" name="brand" value="aa" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-						    	Cigarette Brand
-						    	<span class="caret"></span>
-						    </button>
-						    <ul class="dropdown-menu" id="brand-dp" name="brand-dp" value="hello">
-						      	<!-- 
-								<li><a href="#">Brand 1</a></li>
-						      	<li><a href="#">Brand 2</a></li>
- 								-->							
- 								<?php	
-        							$sql = "SELECT Brand FROM Cigarette";
-            						if($result=$con->query($sql)){
-            						//print_r($result);
-                						if($result->num_rows){
-                    						while($row=$result->fetch_object()) {
-                        						$combo.="<li><a href=\"#\">".$row->Brand."</a></li>";
-                    						}
-                    						$result->free();
-                						}
-            						}
-            						echo $combo;
-        						?>
-						    </ul>
-						</div>
-						<!-- SIZE -->
-						<div id="size" class="col-lg-4 col-md-4 col-sm-4">
-							<button type="button" class="btn btn-theme03 dropdown-toggle" data-toggle="dropdown">Size
-						  		<span class="caret"></span>
-						  	</button>
-						  		<ul class="dropdown-menu" role="menu" id="size-dp">
-						    		<li><a href="#">20</a></li>
-						    		<li><a href="#">25</a></li>
-						    		<li><a href="#">50</a></li>
-						  		</ul>
-							</div>       	
-						</p>
-						<!-- COUNTER -->
-						<p> 
-						<div class="col-lg-4 col-md-4 col-sm-4" >
-								<div class="box1">
-								<span onclick="modify_qty(+1)" class="lw-chev-up"></span>
-								</div>
-							</div>
-						<div class="col-lg-4 col-md-4 col-sm-4" align="center" style="padding: 5px">
-								<h2><input id="qty" value="0" style="width: 30%; height: 40px; text-align:center; border:none"></input></h2>
-							</div>
-						<div class="col-lg-4 col-md-4 col-sm-4">
-								<div class="box1">
-								<span onclick="modify_qty(-1)" class="lw-chev-down"></span>
-								</div>
-							</div>
-						</p>
-						<!-- 
-<p>
-						<!~~ AUD SIGN ~~>
-<!~~ 
-								<div class="col-lg-1 col-md-1 col-sm-1" style="padding-top: 15px">
-									<span class="badge bg-info">$ AUD </span>
-								</div>
- ~~>
-						<!~~ MONEY INPUT ~~>
-						
-<!~~ 
-								<div class="col-lg-11 col-md-11 col-sm-11">
-									<input id="priceInput" type="text" class="form-control" placeholder="Price of the box of Cigarette" style="text-align:center; width:90%; margin: 10px"autofocus>
-								</div>
- ~~>
-						</p>
- -->
-						<!-- Submit Button -->	
-						<p>
-						<div class="col-lg-12 col-md-12 col-sm-12">
-								<button type="button" class="btn btn-theme03 btn-primary btn-lg btn-block" onclick="clickButtom()"><i class="fa fa-check"></i> Submit</button>
-							</div>
-						</p>				
-      				</div><!-- /showback -->
-      				<!-- /showback -->	
-      			</div><! --/col-lg-6 -->
-			<!-- INPUT BOART END -->
-      		<!-- DISPLAY BOARD START -->
-      			<div class="col-lg-6 col-md-6 col-sm-12">      				
-      				<div class="showback">
-						  <div class="content-panel">
-                              <h4><i class="fa fa-angle-right"></i> Content (mg)</h4>
-                              <div class="panel-body">
-                                  <div id="hero-bar" class="graph"></div>
-                              </div>
-                              <div class="col-lg-12 colmd-12 col-sm-12" style="padding-top: 20px">
-									<span class="badge bg-info" id = "showMoney">$ AUD </span>
-							  </div>
-                          </div>
-                    </div><!-- /showback -->
-				</div><!-- /col-lg-6 -->
-      		<!-- DISPLAY BOARD END -->
-			</div><!--/ row -->
+      		<div class="col-lg-12 col-md-12 col-sm-12">
+      			<div class="showback-all" style="text-align:center">
+      				<div style="margin-bottom:20px" style="text-align:center">
+      				<button type="button" class="btn btn-theme03 btn-primary btn-lg btn-block" ><a href="counter.php"><i class="fa fa-bar-chart-o"></i>&nbsp;&nbsp;Track my Cigarette</a></button>
+      				</div>
+      				<div style="margin-bottom: 30px">
+      				<img id="a" src="assets/img/quitting-smoking.png" alt="Quit Smoke" style="width:100%">
+      				</div>
+      				
+      			</div>
+      		</div>
+      		</div><!--/ row -->
           </section><! --/wrapper -->
-      </section><!-- /MAIN CONTENT -->
+<!--       </section><!~~ /MAIN CONTENT ~~> -->
 	  
       <!--main content end-->
       <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
               2016 - Quinate Interactive
-              <a href="buttons.html#" class="go-top">
+              <a href="#a" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>
+              <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
           </div>
       </footer>
       <!--footer end-->
@@ -394,7 +238,6 @@ include('connectMySQL.php');
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
-	<script src="assets/js/customSelect.js" type="text/javascript"></script>
 
 
     <!--common script for all pages-->
@@ -412,7 +255,7 @@ include('connectMySQL.php');
     <!-- Initial Bar Chart -->
   	<script>
   	initialChart();
-  	</script>
+  </script>
   	<!-- Counter -->
   	<script>
       function modify_qty(val) {
@@ -427,30 +270,13 @@ include('connectMySQL.php');
 	  }
 	 </script>
 	<!-- Submit Button -->
-	<script>
-		function checkRate(input)
-		{
-     		var re = /^[0-9]+.?[0-9]*$/;
-    		var nubmer = input;
-    		if (!re.test(nubmer))
-    		{
-        		alert("Please input valid number.");
-        		return false;
-     		}
-     		return true;
-		}
+	<script>  
 		function clickButtom() {
 		var qty = document.getElementById('qty').value;
 		var brand = document.getElementById('brand').value;
 		var size = document.getElementById('size').value;
-		var username = document.getElementById().value;
-		if (!checkRate(qty)){
-			qty = 0;
-			document.getElementById('qty').value=0;
-			
-		}
-		document.getElementById('showMoney').innerHTML="$ AUD " + qty;
-		.ajax ({
+// 		alert("Brand =" + brand + " and the size is " + size);
+		$.ajax ({
   			url: "a.php",
 			type: "POST",
             data: {name:brand },
@@ -463,6 +289,7 @@ include('connectMySQL.php');
 				
             }
         });
+
 		}
 	</script>
 	<!-- Default -->
@@ -501,7 +328,7 @@ include('connectMySQL.php');
 	  });
    </script>
   	<!-- Size Dropdown Menu Li -->
-  	<script>
+   <script>
 	  $('#size-dp li').click(function(){
   		var selText = $(this).text();
   		var num = $(this).index();
@@ -509,6 +336,17 @@ include('connectMySQL.php');
  	 	document.getElementById('size').value = selText;
 	  });
   </script>
+   <script>
+   		$('#testA').live("click", function(){
+   			var input = document.getElementById('abc').value;
+   			alert(input);
+   		});
+   		
+   		// $('#cancle').live("click", function(){
+//    			var input = document.getElementById('abc').value;
+//    			alert(input);
+//    		});
+   </script>
 
 
 

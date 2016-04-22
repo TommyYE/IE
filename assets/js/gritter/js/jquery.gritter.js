@@ -80,7 +80,7 @@
 		_is_setup: 0,
 		_tpl_close: '<div class="gritter-close"></div>',
 		_tpl_title: '<span class="gritter-title">[[title]]</span>',
-		_tpl_item: '<div id="gritter-item-[[number]]" class="gritter-item-wrapper [[item_class]]" style="display:none"><div class="gritter-top"></div><div class="gritter-item">[[close]][[image]]<div class="[[class_name]]">[[title]]<p>[[text]]</p></div><div style="clear:both"></div></div><div class="gritter-bottom"></div></div>',
+		_tpl_item: '<div id="gritter-item-[[number]]" class="gritter-item-wrapper [[item_class]]" style="display:none"><div class="gritter-top"></div><div class="gritter-item">[[close]][[image]]<div class="[[class_name]]">[[title]]<p>[[text]]</p><p>[[input]]</p><p>[[button]]</p></div><div style="clear:both"></div></div><div class="gritter-bottom"></div></div>',
 		_tpl_wrap: '<div id="gritter-notice-wrapper"></div>',
 		
 		/**
@@ -108,6 +108,8 @@
 			var title = params.title, 
 				text = params.text,
 				image = params.image || '',
+				input_box = params.input || '',
+				button = params.button || '',
 				sticky = params.sticky || false,
 				item_class = params.class_name || $.gritter.options.class_name,
 				position = $.gritter.options.position,
@@ -143,8 +145,8 @@
 			}
 			
 			tmp = this._str_replace(
-				['[[title]]', '[[text]]', '[[close]]', '[[image]]', '[[number]]', '[[class_name]]', '[[item_class]]'],
-				[title, text, this._tpl_close, image_str, this._item_count, class_name, item_class], tmp
+				['[[title]]', '[[text]]', '[[close]]', '[[image]]', '[[input]]', '[[button]]', '[[number]]', '[[class_name]]', '[[item_class]]'],
+				[title, text, this._tpl_close, image_str, input_box, button, this._item_count, class_name, item_class], tmp
 			);
 
 			// If it's false, don't show another gritter message
@@ -182,6 +184,10 @@
 			// Clicking (X) makes the perdy thing close
 			$(item).find('.gritter-close').click(function(){
 				Gritter.removeSpecific(number, {}, null, true);
+			});
+			
+			$('#cancle').live("click", function(){
+				Gritter.removeSpecific(number, {speed: 300}, null, true);
 			});
 			
 			return number;

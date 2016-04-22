@@ -214,8 +214,8 @@ hr {
 }
 
 ul.top-menu > li > .logout {
-	color: #f2f2f2;
-	font-size: 12px;
+	color: #ffffff;
+	font-size: 13px;
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border: 1px solid #64c3c2 !important;
@@ -1386,7 +1386,7 @@ PANELS CONFIGURATIONS
 	width: 70px;
 	height: 70px;
 	line-height: 70px;
-	font-size: 13px;
+	font-size: 20px;
 	color: #fff;
 	text-align: center;
 	border-radius: 100%;
@@ -1452,7 +1452,7 @@ PANELS CONFIGURATIONS
   color: #889199;
   text-transform: uppercase;
   font-weight: 900;
-  font-size: 11px;
+  font-size: 20px;
   letter-spacing: 1px;
   text-indent: 52px;
   cursor: pointer;
@@ -1638,10 +1638,21 @@ PANELS CONFIGURATIONS
 /* showcase background */
 .showback {
 	background: #ffffff;
-	padding: 15px;
+	padding: 40px 15px 15px;
 	margin-bottom: 15px;
-	height: 600px;
+	height: 750px;
 	box-shadow: 0px 3px 2px #aab2bd;
+}
+
+.showback-all {
+    background: #ffffff;
+    padding: 15px 15px 15px;
+    margin-bottom: 15px;
+    box-shadow: 0px 3px 2px #aab2bd;
+}
+
+.showback-auto {
+
 }
 
 

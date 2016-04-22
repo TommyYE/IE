@@ -16,6 +16,38 @@ var Script = function () {
 
     });
 
+//     var values = [100.00,100.00,100.00,80.00,80.00,66.67];
+//
+// // Draw a sparkline for the #sparkline element
+//     $('#sparkline').sparkline(values, {
+//
+//         // Map the offset in the list of values to a name to use in the tooltip
+//         type: 'line',
+//         width:'90%',
+//         height: '75',
+//         resize: 'true',
+//         fillColor: '',
+//         lineColor: '#fff',
+//         lineWidth: 1,
+//         spotColor: '#f22',
+//         minSpotColor: '#f22',
+//         maxSpotColor: '#f33',
+//         highlightSpotColor: '#f22',
+//         highlightLineColor: '#ffffff',
+//         spotRadius: 4,
+//         tooltipFormat: '{{offset:names}} - {{y}}%',
+//         tooltipValueLookups: {
+//             'names': {
+//                 0: 'Jul-14',
+//                 1: 'Aug-15',
+//                 2: 'Sep-16',
+//                 3: 'Oct-17',
+//                 4: 'Nov-18',
+//                 5: 'Dev-19',
+//             }
+//         }
+//     });
+
 //sparkline chart
 
     $("#barchart").sparkline([5,3,6,7,5,6,4,2,3,4,6,8,9,10,8,6,5,7,6,5,4,7,4], {
