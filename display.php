@@ -7,7 +7,7 @@
     $server = 'localhost';
     $user = 'root';
     $pass = '123456';
-    $db = 'IEc2';
+ 	$db = 'IEc2';
     $con = mysqli_connect($server, $user, $pass, $db);
     $backValue = array();
 
@@ -36,9 +36,6 @@
             $backValue[2] = $CO;
             $backValue[3] = $Spend;
             echo json_encode($backValue);
-        }else
-        {
-            echo "No result!";
         }
     }
 

@@ -4,7 +4,7 @@
     $server = 'localhost';
     $user = 'root';
     $pass = '123456';
-    $db = 'IEc2';
+ 	$db = 'IEc2';
     $userName = $_SESSION["usrname"];
     $con = mysqli_connect($server, $user, $pass, $db);
     $backValue = array();
@@ -32,7 +32,7 @@
         }
         $result->free();
         $backValue[0] = $Qty;
-        $backValue[1] = $EventDate;
+        $backValue[1] = $EventDate; 
         $backValue[2] = $sumQty;
         echo json_encode($backValue);
     }

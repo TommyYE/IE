@@ -12,12 +12,19 @@ var Gritter = function () {
             image: 'assets/img/ui-sam.jpg',
             // (bool | optional) if you want it to fade out on its own or just sit there
             sticky: true,
-            input: '<input id="login_input" type="text" class="form-control" placeholder="E-mail Address" style="text-align:center; width:90%; margin: 10px 0px 10px"autofocus>',
+            input: '<input id="login_input" type="text" class="form-control" placeholder="E-mail Address" style="text-align:left; width:90%; margin: 10px 0px 10px"autofocus><input type="password" class="form-control" id="loginPassword" size="15" maxlength="20" placeholder="Password" style="text-align:left; width:90%; margin: 10px 0px 10px"autofocus>',
             button: '<a id="loginOK" class="btn btn-success  btn-sm" style="width:90%" href="javascript:;">OK</a>',
             // (int | optional) the time you want it to be alive for before fading out
             time: '',
             // (string | optional) the class name you want to apply to that specific message
-            class_name: 'my-sticky-class'
+            class_name: 'my-sticky-class',
+            before_open: function(){
+                if($('.gritter-item-wrapper').length == 1)
+                {
+                    // Returning false prevents a new gritter from opening
+                    return false;
+                }
+            }
         });
         
 
@@ -49,12 +56,19 @@ var Gritter = function () {
             image: 'assets/img/ui-sam.jpg',
             // (bool | optional) if you want it to fade out on its own or just sit there
             sticky: true,
-            input: '<input id="goal_input" type="text" class="form-control" placeholder="Goal\'s Name" style="text-align:center; width:90%; margin: 10px 0px 10px"autofocus><input id="money_input" type="text" class="form-control" placeholder="Goal\'s Price" style="text-align:center; width:90%; margin: 10px 0px 10px"autofocus>',
+            input: '<input id="goal_input" type="text" class="form-control"  maxlength=\"20\" size=\"15\" placeholder="Goal\'s Name" style="text-align:center; width:90%; margin: 10px 0px 10px"autofocus><input id="money_input" type="text" class="form-control"  maxlength=\"20\" size=\"15\" placeholder="Goal\'s Price" style="text-align:center; width:90%; margin: 10px 0px 10px"autofocus>',
             button: '<a id="setGoalOK" class="btn btn-success  btn-sm" style="width:90%" href="javascript:;">OK</a>',
             // (int | optional) the time you want it to be alive for before fading out
             time: '',
             // (string | optional) the class name you want to apply to that specific message
-            class_name: 'my-sticky-class'
+            class_name: 'my-sticky-class',
+            before_open: function(){
+                if($('.gritter-item-wrapper').length == 1)
+                {
+                    // Returning false prevents a new gritter from opening
+                    return false;
+                }
+            }
         });
 
 
@@ -87,6 +101,34 @@ var Gritter = function () {
 
         return false;
     });
+    $('#challenge_out').click(function(){
+
+        $.gritter.add({
+            // (string | mandatory) the heading of the notification
+            title: 'Notification',
+            // (string | mandatory) the text inside the notification
+            text: 'Please login before challenge someone~',
+            //class_name: 'gritter-light',
+            time:1000
+        });
+
+
+        return false;
+    });
+    $('#displayGoal_out').click(function(){
+
+        $.gritter.add({
+            // (string | mandatory) the heading of the notification
+            title: 'Notification',
+            // (string | mandatory) the text inside the notification
+            text: 'Please login before display the goal~',
+            //class_name: 'gritter-light',
+            time:1000
+        });
+
+
+        return false;
+    });
     $('#signup').click(function(){
 
         var unique_id = $.gritter.add({
@@ -99,12 +141,19 @@ var Gritter = function () {
             image: 'assets/img/ui-sam.jpg',
             // (bool | optional) if you want it to fade out on its own or just sit there
             sticky: true,
-            input: '<input id="signup_input" type="text" class="form-control" placeholder="Your E-mail" style="text-align:center; width:90%; margin: 10px 0px 10px"autofocus>',
+            input: '<input id="signup_input" type="text" class="form-control" placeholder="Your E-mail" maxlength=\"50\" size=\"15\" style="text-align:left; width:90%; margin: 10px 0px 10px"autofocus><span id="strength"></span><input type="password" class="form-control" size="15" maxlength="20" onkeyup="pwdStrength();" id="signUpPassword1" placeholder="Password" style="text-align:left; width:90%; margin: 10px 0px 10px"autofocus><input type="password" class="form-control" id="signUpPassword2" placeholder="Confirm Password" style="text-align:left; width:90%; margin: 10px 0px 10px"autofocus>',
             button: '<a id="signupOK" class="btn btn-success  btn-sm" style="width:90%" href="javascript:;">OK</a>',
             // (int | optional) the time you want it to be alive for before fading out
             time: '',
             // (string | optional) the class name you want to apply to that specific message
-            class_name: 'my-sticky-class'
+            class_name: 'my-sticky-class',
+            before_open: function(){
+                if($('.gritter-item-wrapper').length == 1)
+                {
+                    // Returning false prevents a new gritter from opening
+                    return false;
+                }
+            }
         });
         
 

@@ -6,7 +6,7 @@
     $server = 'localhost';
     $user = 'root';
     $pass = '123456';
-    $db = 'IEc2';
+ 	$db = 'IEc2';
     $con = mysqli_connect($server, $user, $pass, $db);
     $backValue = array();
     

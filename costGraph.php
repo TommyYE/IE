@@ -4,7 +4,7 @@
     $server = 'localhost';
     $user = 'root';
     $pass = '123456';
-    $db = 'IEc2';
+ 	$db = 'IEc2';
     $userName = $_SESSION["usrname"];
     $con = mysqli_connect($server, $user, $pass, $db);
     $backValue = array();
@@ -14,7 +14,7 @@
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }else
     {
-        $sql = "select format(SUM(cost),2) AS Cost, event_date AS EventDate from Event where date_sub(curdate(), INTERVAL 6 DAY) <= date(event_date) and userName = '".$userName."' GROUP BY event_date";
+        $sql = "select format(SUM(cost),2) AS Cost, event_date AS EventDate from Event where userName = '".$userName."' GROUP BY event_date";
         $result = mysqli_query($con,$sql);
         $sql = "select format(SUM(cost),2) AS Cost from Event where date_sub(curdate(), INTERVAL 6 DAY) <= date(event_date) and userName = '".$userName."'";
         $result_sumCost = mysqli_query($con,$sql);
@@ -28,15 +28,25 @@
             echo "No result";
         }
         $i = 0;
-            while($row=$result->fetch_object()) {
-                $Cost[$i]=$row->Cost;
-                $EventDate[$i]=$row->EventDate;
-                $i++;
-            }
-            $result->free();
-            $backValue[0] = $Cost;
-            $backValue[1] = $EventDate;
-            $backValue[2] = $sumCost;
+        while($row=$result->fetch_object()) {
+            $Cost[$i]=$row->Cost;
+            $EventDate[$i]=$row->EventDate;
+            $i++;
+        }
+        $result->free();
+        $sql = "select format(SUM(qty),2) AS Qty, event_date AS EventDate from Event where userName = '".$userName."' GROUP BY event_date";
+        $result2 = mysqli_query($con,$sql);
+        $i = 0;
+        while($row=$result2->fetch_object()) {
+            $Qty[$i]=$row->Qty;
+            $EventDate[$i]=$row->EventDate;
+            $i++;
+        }
+        $result2->free();
+        $backValue[0] = $Cost;
+        $backValue[1] = $EventDate;
+        $backValue[2] = $sumCost;
+        $backValue[3] = $Qty;
             echo json_encode($backValue);
     }
 

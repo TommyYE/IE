@@ -1,10 +1,11 @@
 <?php
     session_start();
     $userName = $_POST['name'];
+    $userPwd = $_POST['pwd'];
     $server = 'localhost';
     $user = 'root';
     $pass = '123456';
-    $db = 'IEc2';
+ 	$db = 'IEc2';
     $con = mysqli_connect($server, $user, $pass, $db);
     $backValue = array();
 
@@ -13,6 +14,7 @@
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }else
     {
+        $encryptedPwd = crypt($userPwd, '$2a$07$usesomesillystringforsalt$');
         $sql = "SELECT * FROM Users WHERE userName = '".$userName."'";
         $result = mysqli_query($con,$sql);
         $row = mysqli_fetch_array($result);
@@ -20,10 +22,10 @@
             echo "existed";
         }else{
             if (filter_var($userName, FILTER_VALIDATE_EMAIL)){
-                $sql = "INSERT INTO Users(userName, favBrand, favSize, favPrice) VALUES ('".$userName."','0',0,0)";
+                $sql = "INSERT INTO Users(userName, passWord, favBrand, favSize, favPrice) VALUES ('".$userName."','".$encryptedPwd."','0',0,0)";
                 mysqli_query($con,$sql);
                 $_SESSION["usrname"] = $userName;
-                echo "succeeded.";
+                echo "succeeded";
             }else{
                 echo "invalid";
             }

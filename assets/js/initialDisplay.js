@@ -10,10 +10,12 @@ function initialDisplay (){
             var nct = parseFloat(data[1]);
             var co = parseFloat(data[2]);
             var cost = parseFloat(data[3]);
-            document.getElementById('costDisplay').innerText = cost.toFixed(2);
-            document.getElementById('tarDisplay').innerText = tar.toFixed(2) + " mg";
-            document.getElementById('nctDisplay').innerText = nct.toFixed(2) + " mg";
-            document.getElementById('coDisplay').innerText = co.toFixed(2) + " mg";
+
+
+            document.getElementById('costDisplay').innerText = "$ " + cost.toFixed(0);
+            document.getElementById('tarDisplay').innerText = tar.toFixed(0) + " mg";
+            document.getElementById('nctDisplay').innerText = nct.toFixed(0) + " mg";
+            document.getElementById('coDisplay').innerText = co.toFixed(0) + " mg";
 
         }
     });
